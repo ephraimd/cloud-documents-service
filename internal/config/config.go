@@ -1,11 +1,12 @@
 package config
 
 import (
-	"github.com/ephraimd/cloud-documents-service/internal/helpers"
-	"github.com/ephraimd/cloud-documents-service/pkg/logger"
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/ephraimd/cloud-documents-service/internal/helpers"
+	"github.com/ephraimd/cloud-documents-service/pkg/logger"
 
 	"github.com/joho/godotenv"
 )
