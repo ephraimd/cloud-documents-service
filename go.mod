@@ -1,4 +1,4 @@
-module ephraimd/cloud-document-service
+module github.com/ephraimd/cloud-documents-service
 
 go 1.23.0
 

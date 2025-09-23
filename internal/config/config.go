@@ -1,8 +1,8 @@
 package config
 
 import (
-	"ephraimd/cloud-document-service/internal/helpers"
-	"ephraimd/cloud-document-service/pkg/logger"
+	"github.com/ephraimd/cloud-documents-service/internal/helpers"
+	"github.com/ephraimd/cloud-documents-service/pkg/logger"
 	"strconv"
 	"strings"
 	"time"

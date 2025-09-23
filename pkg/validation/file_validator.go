@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"ephraimd/cloud-document-service/internal/config"
+	"github.com/ephraimd/cloud-documents-service/internal/config"
 )
 
 type FileValidator struct {

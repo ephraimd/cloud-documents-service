@@ -1,0 +1,65 @@
+{
+  "name": "cloud-documents-service",
+  "description": "Production-ready cloud-based file upload service supporting AWS S3, DigitalOcean Spaces, and Cloudinary",
+  "repository": "https://github.com/ephraimd/cloud-documents-service",
+  "keywords": ["go", "file-upload", "aws-s3", "cloudinary", "digitalocean-spaces"],
+  "website": "https://your-app-name.herokuapp.com",
+  "success_url": "/v1/upload/providers",
+  "buildpacks": [
+    {
+      "url": "heroku/go"
+    }
+  ],
+  "env": {
+    "ENV": {
+      "description": "Environment (production, staging, local)",
+      "value": "production"
+    },
+    "MAX_FILE_SIZE": {
+      "description": "Maximum file size in bytes",
+      "value": "10485760"
+    },
+    "ALLOWED_FILE_TYPES": {
+      "description": "Comma-separated list of allowed file extensions",
+      "value": "jpg,jpeg,png,gif,pdf,doc,docx,txt,csv,zip"
+    },
+    "AWS_ACCESS_KEY_ID": {
+      "description": "AWS Access Key ID for S3 uploads"
+    },
+    "AWS_SECRET_ACCESS_KEY": {
+      "description": "AWS Secret Access Key for S3 uploads"
+    },
+    "AWS_REGION": {
+      "description": "AWS region for S3 bucket",
+      "value": "us-east-1"
+    },
+    "AWS_BUCKET": {
+      "description": "AWS S3 bucket name"
+    },
+    "CLOUDINARY_CLOUD_NAME": {
+      "description": "Cloudinary cloud name"
+    },
+    "CLOUDINARY_API_KEY": {
+      "description": "Cloudinary API key"
+    },
+    "CLOUDINARY_API_SECRET": {
+      "description": "Cloudinary API secret"
+    },
+    "SPACES_ACCESS_KEY_ID": {
+      "description": "DigitalOcean Spaces access key ID"
+    },
+    "SPACES_SECRET_ACCESS_KEY": {
+      "description": "DigitalOcean Spaces secret access key"
+    },
+    "SPACES_REGION": {
+      "description": "DigitalOcean Spaces region",
+      "value": "nyc3"
+    },
+    "SPACES_BUCKET": {
+      "description": "DigitalOcean Spaces bucket name"
+    },
+    "SPACES_ENDPOINT": {
+      "description": "DigitalOcean Spaces endpoint URL"
+    }
+  }
+}

@@ -9,7 +9,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"ephraimd/cloud-document-service/internal/routes"
+	"github.com/ephraimd/cloud-documents-service/internal/routes"
 
 	"github.com/gin-gonic/gin"
 	"github.com/stretchr/testify/assert"

@@ -4,9 +4,9 @@ import (
 	"mime/multipart"
 	"net/http"
 
-	"ephraimd/cloud-document-service/internal/helpers"
-	"ephraimd/cloud-document-service/pkg/storage"
-	"ephraimd/cloud-document-service/pkg/validation"
+	"github.com/ephraimd/cloud-documents-service/internal/helpers"
+	"github.com/ephraimd/cloud-documents-service/pkg/storage"
+	"github.com/ephraimd/cloud-documents-service/pkg/validation"
 
 	"github.com/gin-gonic/gin"
 )

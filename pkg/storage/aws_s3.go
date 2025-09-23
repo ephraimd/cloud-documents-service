@@ -7,9 +7,9 @@ import (
 	"path/filepath"
 	"strings"
 
-	"ephraimd/cloud-document-service/internal/config"
-	"ephraimd/cloud-document-service/internal/contracts"
-	"ephraimd/cloud-document-service/pkg/logger"
+	"github.com/ephraimd/cloud-documents-service/internal/config"
+	"github.com/ephraimd/cloud-documents-service/internal/contracts"
+	"github.com/ephraimd/cloud-documents-service/pkg/logger"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/credentials"

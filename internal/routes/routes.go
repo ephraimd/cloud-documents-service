@@ -1,12 +1,12 @@
 package routes
 
 import (
-	"ephraimd/cloud-document-service/internal/helpers"
-	awsresource "ephraimd/cloud-document-service/internal/resources/aws_resource"
-	cloudinaryresource "ephraimd/cloud-document-service/internal/resources/cloudinary_resource"
-	spacesresource "ephraimd/cloud-document-service/internal/resources/spaces_resource"
-	uploadresource "ephraimd/cloud-document-service/internal/resources/upload_resource"
-	"ephraimd/cloud-document-service/pkg/logger"
+	"github.com/ephraimd/cloud-documents-service/internal/helpers"
+	awsresource "github.com/ephraimd/cloud-documents-service/internal/resources/aws_resource"
+	cloudinaryresource "github.com/ephraimd/cloud-documents-service/internal/resources/cloudinary_resource"
+	spacesresource "github.com/ephraimd/cloud-documents-service/internal/resources/spaces_resource"
+	uploadresource "github.com/ephraimd/cloud-documents-service/internal/resources/upload_resource"
+	"github.com/ephraimd/cloud-documents-service/pkg/logger"
 
 	"github.com/gin-gonic/gin"
 	swaggerFiles "github.com/swaggo/files"

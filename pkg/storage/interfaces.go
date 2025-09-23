@@ -1,7 +1,7 @@
 package storage
 
 import (
-	"ephraimd/cloud-document-service/internal/contracts"
+	"github.com/ephraimd/cloud-documents-service/internal/contracts"
 	"io"
 )
 

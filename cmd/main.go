@@ -5,16 +5,16 @@ import (
 	"net/http"
 	"time"
 
-	"ephraimd/cloud-document-service/internal/config"
-	"ephraimd/cloud-document-service/internal/routes"
+	"github.com/ephraimd/cloud-documents-service/internal/config"
+	"github.com/ephraimd/cloud-documents-service/internal/routes"
 
 	"github.com/gin-gonic/gin"
 
-	_ "ephraimd/cloud-document-service/docs"
-	_ "ephraimd/cloud-document-service/internal/resources/aws_resource"
-	_ "ephraimd/cloud-document-service/internal/resources/cloudinary_resource"
-	_ "ephraimd/cloud-document-service/internal/resources/spaces_resource"
-	_ "ephraimd/cloud-document-service/internal/resources/upload_resource"
+	_ "github.com/ephraimd/cloud-documents-service/docs"
+	_ "github.com/ephraimd/cloud-documents-service/internal/resources/aws_resource"
+	_ "github.com/ephraimd/cloud-documents-service/internal/resources/cloudinary_resource"
+	_ "github.com/ephraimd/cloud-documents-service/internal/resources/spaces_resource"
+	_ "github.com/ephraimd/cloud-documents-service/internal/resources/upload_resource"
 )
 
 // @title Cloud Documents Service API
