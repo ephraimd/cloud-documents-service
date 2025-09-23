@@ -2,12 +2,14 @@ package validation
 
 import (
 	"fmt"
+	"io"
 	"mime/multipart"
 	"net/http"
 	"path/filepath"
 	"strings"
 
 	"github.com/ephraimd/cloud-documents-service/internal/config"
+	"github.com/h2non/filetype"
 )
 
 type FileValidator struct {
@@ -108,27 +110,35 @@ func (v *FileValidator) validateFilename(filename string) error {
 }
 
 func (v *FileValidator) ValidateMimeType(file multipart.File) error {
-	if !v.config.EnableFileTypeValidation {
+	if !v.config.EnableFileTypeValidation || len(v.config.AllowedMimeTypes) == 0 {
 		return nil
 	}
 
-	if len(v.config.AllowedMimeTypes) == 0 {
-		return nil
-	}
-
-	buffer := make([]byte, 512)
-	_, err := file.Read(buffer)
+	// Read header bytes
+	header := make([]byte, 261) // filetype recommends at least 261 bytes
+	_, err := file.Read(header)
 	if err != nil {
 		return fmt.Errorf("failed to read file for MIME type detection: %v", err)
 	}
 
-	file.Seek(0, 0)
+	// reset cursor if possible
+	if seeker, ok := file.(io.Seeker); ok {
+		_, _ = seeker.Seek(0, io.SeekStart)
+	}
 
-	detectedType := DetectMimeType(buffer)
-	detectedType = strings.ToLower(detectedType)
+	// Detect using filetype
+	kind, unknown := filetype.Match(header)
+	if unknown != nil {
+		// fallback to generic mime sniffing
+		return fmt.Errorf("unknown MIME type: %v", unknown)
+	}
 
-	for _, allowedType := range v.config.AllowedMimeTypes {
-		if detectedType == strings.TrimSpace(allowedType) {
+	detectedType := strings.ToLower(strings.TrimSpace(kind.MIME.Value))
+
+	// Normalize allowed list
+	for _, allowed := range v.config.AllowedMimeTypes {
+		allowed = strings.ToLower(strings.TrimSpace(allowed))
+		if detectedType == allowed {
 			return nil
 		}
 	}

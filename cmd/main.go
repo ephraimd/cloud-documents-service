@@ -39,7 +39,16 @@ func main() {
 
 	router.Use(func(c *gin.Context) {
 		origin := c.Request.Header.Get("Origin")
-		allowedOrigins := []string{"http://localhost:3000", "http://127.0.0.1:3000"}
+		allowedOrigins := []string{
+			"http://localhost:3000",
+			"http://127.0.0.1:3000",
+			"https://www.app.geteco.io",
+			"https://app.geteco.io",
+			"https://www.sandbox.app.geteco.io",
+			"https://sandbox.app.geteco.io",
+			"https://www.test.app.geteco.io",
+			"https://test.app.geteco.io",
+		}
 
 		isAllowed := false
 		for _, allowedOrigin := range allowedOrigins {
