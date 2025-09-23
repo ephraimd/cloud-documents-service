@@ -1,1 +1,1 @@
-web: ./cloud-documents-service
+web: ./bin/cmd
