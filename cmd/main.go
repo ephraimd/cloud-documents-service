@@ -50,7 +50,11 @@ func main() {
 			"https://sandbox.app.geteco.io",
 			"https://www.test.app.geteco.io",
 			"https://test.app.geteco.io",
-			"*.geteco.io",
+			"https://fyi470.geteco.io",
+			"https://www.fyi470.geteco.io",
+			"https://stg-fyi470.geteco.io",
+			"https://www.stg-fyi470.geteco.io",
+			//"*.geteco.io",
 		}
 
 		isAllowed := slices.Contains(allowedOrigins, origin)
