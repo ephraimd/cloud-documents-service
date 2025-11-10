@@ -91,7 +91,7 @@ func LoadConfig() {
 		SpacesAccessKeyID:     helpers.GetOsEnvOrDefault("SPACES_ACCESS_KEY_ID", ""),
 		SpacesSecretAccessKey: helpers.GetOsEnvOrDefault("SPACES_SECRET_ACCESS_KEY", ""),
 		SpacesRegion:          helpers.GetOsEnvOrDefault("SPACES_REGION", "nyc3"),
-		SpacesBucket:          helpers.GetOsEnvOrDefault("SPACES_BUCKET", ""),
+		SpacesBucket:          helpers.GetOsEnvOrDefault("SPACES_BUCKET", "geteco"),
 		SpacesEndpoint:        helpers.GetOsEnvOrDefault("SPACES_ENDPOINT", ""),
 
 		CloudinaryCloudName: helpers.GetOsEnvOrDefault("CLOUDINARY_CLOUD_NAME", ""),

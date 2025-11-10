@@ -3,6 +3,8 @@ package main
 import (
 	"log"
 	"net/http"
+	"slices"
+	"strings"
 	"time"
 
 	"github.com/ephraimd/cloud-documents-service/internal/config"
@@ -38,7 +40,7 @@ func main() {
 	router.RedirectFixedPath = false
 
 	router.Use(func(c *gin.Context) {
-		origin := c.Request.Header.Get("Origin")
+		origin := strings.ToLower(c.Request.Header.Get("Origin"))
 		allowedOrigins := []string{
 			"http://localhost:3000",
 			"http://127.0.0.1:3000",
@@ -48,15 +50,10 @@ func main() {
 			"https://sandbox.app.geteco.io",
 			"https://www.test.app.geteco.io",
 			"https://test.app.geteco.io",
+			"*.geteco.io",
 		}
 
-		isAllowed := false
-		for _, allowedOrigin := range allowedOrigins {
-			if origin == allowedOrigin {
-				isAllowed = true
-				break
-			}
-		}
+		isAllowed := slices.Contains(allowedOrigins, origin)
 
 		if isAllowed {
 			c.Writer.Header().Set("Access-Control-Allow-Origin", origin)
