@@ -55,6 +55,8 @@ func main() {
 			"https://stg-fyi470.geteco.io",
 			"https://www.stg-fyi470.geteco.io",
 			"*.geteco.io",
+			"https://wardrobe-hdj4o.ondigitalocean.app",
+			"*.ondigitalocean.app",
 		}
 
 		isAllowed := slices.Contains(allowedOrigins, origin)
