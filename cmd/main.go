@@ -56,6 +56,7 @@ func main() {
 			"https://www.stg-fyi470.geteco.io",
 			"*.geteco.io",
 			"https://wardrobe-hdj4o.ondigitalocean.app",
+			"https://faith-connect-admin-fe.vercel.app",
 			"*.ondigitalocean.app",
 		}
 
