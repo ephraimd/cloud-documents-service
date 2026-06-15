@@ -44,11 +44,13 @@ func NewCloudinaryProvider() (*CloudinaryProvider, error) {
 func (p *CloudinaryProvider) Upload(file io.Reader, filename, folder string, fileSize int64) (*contracts.UploadResponse, error) {
 	ctx := context.Background()
 
+	// publicID already includes the folder path, so we must NOT also set the
+	// Folder param or Cloudinary nests the asset under "<folder>/<folder>/...",
+	// which would no longer match the URL produced by GetFileURL.
 	publicID := p.buildPublicID(filename, folder)
 
 	uploadParams := uploader.UploadParams{
 		PublicID: publicID,
-		Folder:   folder,
 	}
 
 	result, err := p.client.Upload.Upload(ctx, file, uploadParams)
@@ -56,8 +58,23 @@ func (p *CloudinaryProvider) Upload(file io.Reader, filename, folder string, fil
 		return nil, fmt.Errorf("failed to upload file to Cloudinary: %v", err)
 	}
 
+	// The Cloudinary SDK does not return a Go error when the API rejects the
+	// upload; it reports the reason in result.Error instead. Without this check a
+	// failed upload is returned as a success with an empty URL and zero size.
+	if result.Error.Message != "" {
+		return nil, fmt.Errorf("failed to upload file to Cloudinary: %s", result.Error.Message)
+	}
+
+	url := result.SecureURL
+	if url == "" {
+		url = result.URL
+	}
+	if url == "" {
+		return nil, fmt.Errorf("Cloudinary upload returned no file URL")
+	}
+
 	return &contracts.UploadResponse{
-		URL:      result.SecureURL,
+		URL:      url,
 		Filename: filename,
 		Size:     int64(result.Bytes),
 		Provider: "cloudinary",

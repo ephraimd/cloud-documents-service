@@ -161,10 +161,19 @@ func (h *CloudinaryHandlerImpl) validateFile(header *multipart.FileHeader) error
 	return h.validator.ValidateFile(header)
 }
 
+// maxBaseNameLength bounds the base (extension-less) portion of a generated
+// filename. Cloudinary rejects uploads whose public_id exceeds 255 characters,
+// and the public_id is built from the folder + this name; capping the base
+// leaves ample room for the folder path and the appended timestamp.
+const maxBaseNameLength = 180
+
 func (h *CloudinaryHandlerImpl) generateUniqueFilename(originalName string) string {
 	// Generate unique filename to avoid conflicts
 	ext := filepath.Ext(originalName)
 	name := strings.TrimSuffix(originalName, ext)
+	if len(name) > maxBaseNameLength {
+		name = name[:maxBaseNameLength]
+	}
 	timestamp := time.Now().Unix()
 	return fmt.Sprintf("%s_%d%s", name, timestamp, ext)
 }
